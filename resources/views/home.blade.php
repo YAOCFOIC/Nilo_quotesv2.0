@@ -19,10 +19,10 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form action="{{action('EventController@store')}}" method="POST">
+            <form action="{{route('citas_usuarios')}}" method="POST">
                 {{ csrf_field() }}
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
-                <div class="form-group" id="hidden">
+                <!-- <div class="form-group" id="hidden">
                     <label for="">Tipo de Cita</label>
                     <select name="title"  class="form-control" value="{{old('title')}}">
                         <option selected value="">Selecciona el tipo de cita</option>
@@ -30,7 +30,7 @@
                         <option value="Habilitacion">Habilitación</option>
                         <option value="Tour">Tour Nilo</option>
                     </select>            
-                </div>
+                </div> -->
                 <div class="form-group">
                     <input type="datetime" class="form-control" id="hidden" name="start_date" placeholder="Fecha inical" class="date" value="{{old('start_date')}}" readonly>
                     <script type="text/javascript">
@@ -46,7 +46,16 @@
                             });
                         });
                     </script>
-                        </div>              
+                </div>     
+                <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}" id="captcha">
+                        @if($errors->has('g-recaptcha-response'))
+                            <span class="invalid-feedback" style="display: block;">
+                                <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>         
                     <input type="submit" class="btn btn-primary" value="Agregar Cita" id="position">
             </form>
         </div>

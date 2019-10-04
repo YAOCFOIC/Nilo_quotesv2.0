@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -82,6 +82,6 @@
 
         </main>
     </div>
-   
+   <script type="text/javascript" src="{{asset('js/verifi.js')}}"></script>
 </body>
 </html>

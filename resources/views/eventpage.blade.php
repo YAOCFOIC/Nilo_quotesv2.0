@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="form-group">
 					
-					<a href="/displaydata" class="btn btn-primary">EDITAR CITA</a>
+					<!-- <a href="/displaydata" class="btn btn-primary">EDITAR CITA</a> -->
 					<a href="/deleteeventurl" class="btn btn-danger"> CANCELAR CITA</a>
 				</div>
 			</div>
@@ -40,7 +40,7 @@
 				@endif
 				<div class="cold-md-8">
 					<div class="panel panel-default">
-						<div class="panel-heading" style="background: #2e6da4;color: white;" >
+						<div class="panel-heading" style="background: #ca31ca;color: white;" >
 							Agendamiento de Citas Nilo
 						</div>
 						<div class="panel-body">

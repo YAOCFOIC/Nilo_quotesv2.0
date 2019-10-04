@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 
 
 class Event extends Model
@@ -11,13 +10,13 @@ class Event extends Model
     //
     protected $table = "events";
     protected $fillable=[
-    	'title','color','users_id','start_date','end_date','email'
+    	'title','color','users_id','start_date','end_date','email_visit','phone_visit','name_visit'
     ];
 
     
 
     public function user()
     {
-    	return User::find($this->users_id);
+    	return $this->belongsTo('App\User','users_id','id');
     }
 }

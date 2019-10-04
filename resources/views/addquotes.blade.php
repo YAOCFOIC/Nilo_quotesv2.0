@@ -19,10 +19,12 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form action="{{route('citas')}}" method="GET">
+            <form action="{{route('citas')}}" method="POST">
                 {{ csrf_field() }}
+              
+                   <h1>Agendar Llamada</h1>
                
-                <div class="form-group" id="hidden">
+               <!--  <div class="form-group" id="hidden">
                     <label for="">Tipo de Cita</label>
                     <select name="title"  class="form-control" value="{{old('title')}}">
                         <option selected value="">Selecciona el tipo de cita</option>
@@ -30,7 +32,7 @@
                         <option value="Habilitacion">Habilitación</option>
                         <option value="Tour">Tour Nilo</option>
                     </select>            
-                </div>
+                </div> -->
                 <div class="form-group">
                     <input type="datetime" class="form-control" id="hidden" name="start_date" placeholder="Fecha inical" class="date" value="{{old('start_date')}}" readonly>
                     <script type="text/javascript">
@@ -48,9 +50,26 @@
                     </script>
                 </div>    
                     <div class="form-group cold-md-4">
-                    <input type="text" name="email" class="form-control" placeholder="correo" id="position">
+                        <input type="email" name="email_visit" class="form-control" placeholder="Correo" id="input-form" >
+                        <span id="emailOK"></span>
+                    </div>
+                    <div class="form-group cold-md-4">
+                        <input type="text" name="phone_visit" class="form-control" placeholder="Celular" id="input-form3" required>
+                    </div>
+                    <div class="form-group cold-md-4">
+                        <input type="text" name="phone_visit" class="form-control" placeholder="Nombre Completo" id="input-form2" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}" id="captcha">
+                            @if($errors->has('g-recaptcha-response'))
+                                <span class="invalid-feedback" style="display: block;">
+                                    <strong>{{$errors->first('g-recaptcha-response')}}
+                                    </strong>
+                                </span>
+                            @endif
+                        </div>
                     </div>          
-                    <input type="submit" class="btn btn-primary" value="Agregar Cita" id="position">
+                    <input type="submit" class="btn btn-primary quotes" value="Agregar Cita" id="position2">
             </form>
         </div>
     </div>

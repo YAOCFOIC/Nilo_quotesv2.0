@@ -20,7 +20,9 @@ class CreateEventsTable extends Migration
             $table->string('color');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('email')->nullable();
+            $table->string('email_visit')->nullable();
+            $table->string('phone_visit')->nullable();
+            $table->string('name_visit')->nullable();    
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();

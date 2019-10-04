@@ -17,8 +17,9 @@
 						<th>Color</th>
 						<th>Fecha inicial</th>
 						<th>Fecha final</th>
-						<th>Correo</th>
-						<th>Update</th>
+						<th>Correo Visitante</th>
+						<th>Correo Usuario</th>
+						<!-- <th>Update</th> -->
 						<th>Delete</th>
 					</tr>
 				</thead>
@@ -30,20 +31,22 @@
 						<td>{{$event->color}}</td>
 						<td>{{$event->start_date}}</td>
 						<td>{{$event->end_date}}</td>
-						<td>{{$event->user()->email}}</td>
-						<th>
+						<td>{{$event->email_visit}}</td>
+						<td>{{$event->user ? $event->user->email : ''}}</td>
+						
+					<!-- 	<th>
 							<a href="{{action('EventController@edit',$event['id'])}}" class="btn btn-success">
 								<i class="glyphicon glyphicon-dit"> 
 								</i>
 								Editar Cita
 							</a>
-						</th>
+						</th> -->
 						<th>
 							<form action="{{action('EventController@destroy',$event['id'])}}" method="POST">
 								{{ csrf_field()}}
 								<input type="hidden" name="_method" value="DELETE">
 								<button type="submit" class="btn btn-danger" onclick="return confirm('Quiere borrar registro?')">
-									<i class="glyphicon glyphicon-trash"></i>Elimiar Cita
+									Cancelar Cita
 								</button>
 							</form>
 						</th>

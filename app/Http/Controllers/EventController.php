@@ -60,7 +60,8 @@ class EventController extends Controller
 
         $this->validate($request,[
             'start_date'=>'required',
-            'email'=>'required',
+            'email_visit'=>'required',
+            'phone_visit'=>'required',
         ]);
        
        
@@ -69,14 +70,12 @@ class EventController extends Controller
             return redirect('/')->with('error','Hora Ocupada');
         }else{
             $end = new Carbon($request->start_date);
-            $email = $request->email;
-            $strign=json_decode($request->email);
-                echo $strign;
-                exit;
+            
             $events = new Event(array(
                 'title' => "Llamada",
                 'color' => '#ffd700',
-                'email' => $request->email,
+                'email_visit' => $request->email_visit,
+                'phone_visit' => $request->phone_visit,
                 'start_date' => $request->start_date,
                 'end_date' =>   $end->addHours(1),
             ));
@@ -97,13 +96,13 @@ class EventController extends Controller
             // $mail = new Citas($data);
             // Mail::to($events->email)
             // ->send($mail);
-            Mail::send('emails.Appointment', $data, function ($message) {
+            // Mail::send('emails.Appointment', $data, function ($message) {
 
-                $message->from('lawiert02@gmail.com','Curso laravel');
+            //     $message->from('lawiert02@gmail.com','Curso laravel');
 
-                $message->to($email)->subject('Agendamiento de cita ');
+            //     $message->to($events->email)->subject('Agendamiento de cita ');
 
-            });
+            // });
 
             return redirect('/')->with('success','Cita agregada');
         }
@@ -168,7 +167,8 @@ class EventController extends Controller
     public function show()
     {
         //$events =Event::join('users','users.id','=','events','events.users_id')->Select('events.id','events.title','events.color','events.start_date','events.end_date','users.email');
-        $events = Event::all();
+        $events = Event::with(['user:id,email'])->get();
+
         //return response()->json($events);
         //return view('display')->with('events',$events);
         
@@ -213,7 +213,7 @@ class EventController extends Controller
         $events->end_date = $request->input('end_date');
         $events->save();
 
-        return redirect('home')->with('success','Cita Actualizada');
+        return redirect('citas')->with('success','Cita Actualizada');
         
     }
 

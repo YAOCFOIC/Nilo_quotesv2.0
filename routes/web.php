@@ -23,10 +23,12 @@ Route::get('/displaydata','EventController@show');
 
 Route::get('/deleteeventurl','EventController@show');
 
+Route::post('/citas_usuarios','EventController@store')->name('citas_usuarios');
+
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/emailcitas','EventController@create')->name('citas');
+Route::post('/emailcitas','EventController@create')->name('citas');
 
 

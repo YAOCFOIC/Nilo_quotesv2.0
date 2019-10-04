@@ -7,11 +7,13 @@
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 </head>
 <body>
-	<form action="{{action('EventController@update',$id)}}" method="POST">
+	<form action="{{action('EventController@update',$id)}}" method="GET">
+		<input type="hidden" name="_method" value="PUT">
 		{{csrf_field()}}
 		<div class="container">
 			<div class="jumbotron">
 				<h1>Actualiza la cita</h1>
+				
 				<hr>
 				<input type="hidden" name="_method" value="UPDATE">
 			</div>
@@ -31,7 +33,7 @@
 				<label for="">Fecha Final</label>
 				<input type="datetime" name="end_date" class="form-control" value="{{$events->end_date}}">
 			</div>
-			{{method_field('PUT')}}
+			
 			<button type="submit" name="submit" class="btn btn-success">Actualizar Cita</button>	
 		</div>
 	</form>
