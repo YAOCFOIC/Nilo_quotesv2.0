@@ -1,63 +1,34 @@
 @extends('layouts.app')
 
+
+ 
+
 @section('content')
-<div class="container">
-    @if ($message = Session::get('error'))
-        <div class="alert alert-danger alert-block">
-            <strong>{{ $message }}</strong>
-        </div>
-    @endif
-    @if(\Session::has('success'))
-        <div class="alert alert-success">
-            <p>{{\Session::get('success')}}</p>
-        </div>
-    @endif
+
+<div class="container mt-3">
     <div class="row justify-content-center">
-        <div class="card-body">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
-            <form action="{{route('citas_usuarios')}}" method="POST">
-                {{ csrf_field() }}
-                <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
-                <!-- <div class="form-group" id="hidden">
-                    <label for="">Tipo de Cita</label>
-                    <select name="title"  class="form-control" value="{{old('title')}}">
-                        <option selected value="">Selecciona el tipo de cita</option>
-                        <option value="Llamada">Llamada</option>
-                        <option value="Habilitacion">Habilitación</option>
-                        <option value="Tour">Tour Nilo</option>
-                    </select>            
-                </div> -->
-                <div class="form-group">
-                    <input type="datetime" class="form-control" id="hidden" name="start_date" placeholder="Fecha inical" class="date" value="{{old('start_date')}}" readonly>
-                    <script type="text/javascript">
-                        $(function(){
-                            $('*[name=start_date]').appendDtpicker({
-                                "inline": true,
-                                "futureOnly": true,
-                                "amPmInTimeList": true,
-                                "allowWdays": [1, 2, 3, 4, 5],
-                                "minTime":"09:00",
-                                "maxTime":"17:15",
-                                "locale":"es"
-                            });
-                        });
-                    </script>
-                </div>     
-                <div class="form-group">
-                    <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}" id="captcha">
-                        @if($errors->has('g-recaptcha-response'))
-                            <span class="invalid-feedback" style="display: block;">
-                                <strong>{{$errors->first('g-recaptcha-response')}}</strong>
-                            </span>
-                        @endif
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center" style="background: #ca31ca;color: white;">Agendamiento de citas</div>
+                <div class="card-body">
+                    <div class="container">
+                        
+                            <div class="row">
+                                <div class="form-group">
+                                    <!-- <a href="/displaydata" class="btn btn-primary">EDITAR CITA</a> -->
+                                    <div class="panel panel-default">
+                                      
+                                      <div class="panel-body" data-step="2" data-intro="Si le das en month te muestra las citas para el mes, si le das week te muestra las citas agendadas para la semana o si deseas mirar que citas hay actualmente le das en day.">
+                                        {!! $calendar->calendar() !!}
+                                          {!! $calendar->script() !!}
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>         
-                    <input type="submit" class="btn btn-primary" value="Agregar Cita" id="position">
-            </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

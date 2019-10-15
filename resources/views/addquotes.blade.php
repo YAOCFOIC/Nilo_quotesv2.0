@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
 <div class="container">
@@ -19,20 +19,9 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form action="{{route('citas')}}" method="POST">
+            <form action="{{route('citas')}}" method="post">
                 {{ csrf_field() }}
-              
                    <h1>Agendar Llamada</h1>
-               
-               <!--  <div class="form-group" id="hidden">
-                    <label for="">Tipo de Cita</label>
-                    <select name="title"  class="form-control" value="{{old('title')}}">
-                        <option selected value="">Selecciona el tipo de cita</option>
-                        <option value="Llamada">Llamada</option>
-                        <option value="Habilitacion">Habilitación</option>
-                        <option value="Tour">Tour Nilo</option>
-                    </select>            
-                </div> -->
                 <div class="form-group">
                     <input type="datetime" class="form-control" id="hidden" name="start_date" placeholder="Fecha inical" class="date" value="{{old('start_date')}}" readonly>
                     <script type="text/javascript">
@@ -57,7 +46,7 @@
                         <input type="text" name="phone_visit" class="form-control" placeholder="Celular" id="input-form3" required>
                     </div>
                     <div class="form-group cold-md-4">
-                        <input type="text" name="phone_visit" class="form-control" placeholder="Nombre Completo" id="input-form2" required>
+                        <input type="text" name="name_visit" class="form-control" placeholder="Nombre Completo" id="input-form2" required>
                     </div>
                     <div class="form-group">
                         <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}" id="captcha">

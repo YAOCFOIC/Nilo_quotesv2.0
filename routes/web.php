@@ -15,20 +15,17 @@ Route::get('/', function () {
     return view('addquotes');
 });
 
-Route::resource('/citas','EventController');
+Route::post('/citas','EventController@create')->name('citas');
 
-Route::get('/addeventurl','EventController@display');
+Route::get('/cancel','EventController@show');
+Route::delete('/cancel/{id}','EventController@destroy')->name('destroy');
 
-Route::get('/displaydata','EventController@show');
-
-Route::get('/deleteeventurl','EventController@show');
-
-Route::post('/citas_usuarios','EventController@store')->name('citas_usuarios');
-
-Auth::routes(['verify'=>true]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/emailcitas','EventController@create')->name('citas');
+Route::get('/status{id}','EventController@edit')->name('status');
 
+Route::get('/status/{id}','EventController@update')->name('statusedit');
 
+Route::resource('supports','SupportController');

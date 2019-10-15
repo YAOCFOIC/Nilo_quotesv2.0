@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event; 
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth'=>'verified']);
+        $this->middleware('auth');
     }
 
     /**
@@ -22,7 +23,26 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $events = Event::all();
+        $event = [];
+
+        foreach ($events as $row) {
+            
+            $event[] = \Calendar::event(
+                $row->title,
+                false,
+                new \DateTime($row->start_date),
+                new \DateTime($row->end_date),
+                $row->id,
+                [
+                    'color' => $row->color,
+                ]
+            );
+        }
+        
+        $calendar = \Calendar::addEvents($event);
+        return view('home',compact('events','calendar')); 
+        
     }
 }

@@ -25,7 +25,7 @@
 	padding-right: 5px;
 	background-color:	#eeeeee;
 	color: #3f3f3f;
-	background: url(/image/icono.png);
+	background: url(/images/icono.png);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	text-align: center;
@@ -356,4 +356,13 @@
 #position{
 
 	background: #6c1c82;
+}
+
+.fc-title,.fc-time{
+	color:#fff;
+}
+
+.width{
+	display: none;
+	color: #fff!important;
 }

@@ -31,20 +31,3 @@ $(".quotes").click( function(e){
             return true; 
         }
 });
-
-
-$("#position").click( function(e){
-        
-        var v = grecaptcha.getResponse();
-        if(v.length == 0)
-        {
-            alert("No completaste el captcha")
-            return false;
-            e.preventDefault();
-        }
-        else
-        {
-            document.getElementById('captcha').innerHTML="Captcha completado";
-            return true; 
-        }
-});

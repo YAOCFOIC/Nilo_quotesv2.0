@@ -10,7 +10,7 @@ class Event extends Model
     //
     protected $table = "events";
     protected $fillable=[
-    	'title','color','users_id','start_date','end_date','email_visit','phone_visit','name_visit'
+    	'title','color','users_id','start_date','end_date','email_visit','phone_visit','name_visit','status'
     ];
 
     

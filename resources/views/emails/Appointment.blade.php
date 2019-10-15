@@ -6,8 +6,8 @@
 </head>
 <body>
 	<h2>Señor usuario usted ha solicitado un cita nilo.app </h2>
-	<p>Para el día : {!! $init !!} </p>
-	<p>Finaliza el día : {!! $finish !!}</p>
+	<p>Para el día : {!! $data['init'] !!} </p>
+	<p>Finaliza el día : {!! $data['finish'] !!}</p>
 </body>
 </html>
 
